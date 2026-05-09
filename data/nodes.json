@@ -1,0 +1,182 @@
+[
+  {
+    "slug": "object-input",
+    "group": "input",
+    "title": "Object Input",
+    "nodeId": "SGNObjectInputNode",
+    "nodeClass": "SGNObjectInputNode",
+    "path": "nodes/input/object-input",
+    "added": "0.1.0",
+    "purpose": "References one Blender object and outputs it for transform or attribute chains."
+  },
+  {
+    "slug": "scene-object",
+    "group": "input",
+    "title": "Scene Object",
+    "nodeId": "SGNSceneObjectNode",
+    "nodeClass": "SGNSceneObjectNode",
+    "path": "nodes/input/scene-object",
+    "added": "0.1.0",
+    "purpose": "Exposes a Blender object as dynamic RNA and custom property sockets."
+  },
+  {
+    "slug": "scene-mesh",
+    "group": "input",
+    "title": "Scene Mesh",
+    "nodeId": "SGNSceneMeshNode",
+    "nodeClass": "SGNSceneMeshNode",
+    "path": "nodes/input/scene-mesh",
+    "added": "0.1.0",
+    "purpose": "Exposes mesh data and mesh-level dynamic attributes."
+  },
+  {
+    "slug": "float-value",
+    "group": "input",
+    "title": "Float Value",
+    "nodeId": "SGNFloatValueNode",
+    "nodeClass": "SGNFloatValueNode",
+    "path": "nodes/input/float-value",
+    "added": "0.1.0",
+    "purpose": "Outputs a constant floating point value."
+  },
+  {
+    "slug": "vector-value",
+    "group": "input",
+    "title": "Vector Value",
+    "nodeId": "SGNVectorValueNode",
+    "nodeClass": "SGNVectorValueNode",
+    "path": "nodes/input/vector-value",
+    "added": "0.1.0",
+    "purpose": "Outputs a constant 3D vector."
+  },
+  {
+    "slug": "get-location",
+    "group": "transform",
+    "title": "Get Location",
+    "nodeId": "SGNGetLocationNode",
+    "nodeClass": "SGNGetLocationNode",
+    "path": "nodes/transform/get-location",
+    "added": "0.1.0",
+    "purpose": "Reads an object location."
+  },
+  {
+    "slug": "set-location",
+    "group": "transform",
+    "title": "Set Location",
+    "nodeId": "SGNSetLocationNode",
+    "nodeClass": "SGNSetLocationNode",
+    "path": "nodes/transform/set-location",
+    "added": "0.1.0",
+    "purpose": "Writes a vector to an object location."
+  },
+  {
+    "slug": "get-matrix-world",
+    "group": "transform",
+    "title": "Get Matrix World",
+    "nodeId": "SGNGetMatrixWorldNode",
+    "nodeClass": "SGNGetMatrixWorldNode",
+    "path": "nodes/transform/get-matrix-world",
+    "added": "0.1.0",
+    "purpose": "Reads an object world matrix."
+  },
+  {
+    "slug": "set-matrix-world",
+    "group": "transform",
+    "title": "Set Matrix World",
+    "nodeId": "SGNSetMatrixWorldNode",
+    "nodeClass": "SGNSetMatrixWorldNode",
+    "path": "nodes/transform/set-matrix-world",
+    "added": "0.1.0",
+    "purpose": "Writes a matrix to an object world transform."
+  },
+  {
+    "slug": "math",
+    "group": "math",
+    "title": "Math",
+    "nodeId": "SGNMathNode",
+    "nodeClass": "SGNMathNode",
+    "path": "nodes/math/math",
+    "added": "0.1.0",
+    "purpose": "Runs float math operations."
+  },
+  {
+    "slug": "vector-math",
+    "group": "math",
+    "title": "Vector Math",
+    "nodeId": "SGNVectorMathNode",
+    "nodeClass": "SGNVectorMathNode",
+    "path": "nodes/math/vector-math",
+    "added": "0.1.0",
+    "purpose": "Runs vector math and scalar vector measurements."
+  },
+  {
+    "slug": "matrix-math",
+    "group": "matrix",
+    "title": "Matrix Math",
+    "nodeId": "SGNMatrixMathNode",
+    "nodeClass": "SGNMatrixMathNode",
+    "path": "nodes/matrix/matrix-math",
+    "added": "0.1.0",
+    "purpose": "Runs matrix multiplication, inversion, or identity output."
+  },
+  {
+    "slug": "compose-matrix",
+    "group": "matrix",
+    "title": "Compose Matrix",
+    "nodeId": "SGNComposeMatrixNode",
+    "nodeClass": "SGNComposeMatrixNode",
+    "path": "nodes/matrix/compose-matrix",
+    "added": "0.1.0",
+    "purpose": "Builds a matrix from location, Euler rotation, and scale."
+  },
+  {
+    "slug": "decompose-matrix",
+    "group": "matrix",
+    "title": "Decompose Matrix",
+    "nodeId": "SGNDecomposeMatrixNode",
+    "nodeClass": "SGNDecomposeMatrixNode",
+    "path": "nodes/matrix/decompose-matrix",
+    "added": "0.1.0",
+    "purpose": "Splits a matrix into location, Euler rotation, and scale."
+  },
+  {
+    "slug": "set-attribute",
+    "group": "attribute",
+    "title": "Set Attribute",
+    "nodeId": "SGNSetAttributeNode",
+    "nodeClass": "SGNSetAttributeNode",
+    "path": "nodes/attribute/set-attribute",
+    "added": "0.1.0",
+    "purpose": "Writes a limited set of object attributes or custom properties."
+  },
+  {
+    "slug": "scene-graph-group",
+    "group": "layout",
+    "title": "Scene Graph Group",
+    "nodeId": "SGNGroupNode",
+    "nodeClass": "SGNGroupNode",
+    "path": "nodes/layout/scene-graph-group",
+    "added": "0.1.0",
+    "purpose": "Evaluates a reusable Scene Graph node tree inside another graph."
+  },
+  {
+    "slug": "scene-graph-reroute",
+    "group": "layout",
+    "title": "Scene Graph Reroute",
+    "nodeId": "SGNRerouteNode",
+    "nodeClass": "SGNRerouteNode",
+    "path": "nodes/layout/scene-graph-reroute",
+    "added": "0.1.0",
+    "purpose": "Passes values through a typed reroute socket."
+  },
+  {
+    "slug": "watch-value",
+    "group": "debug",
+    "title": "Watch Value",
+    "nodeId": "SGNWatchValueNode",
+    "nodeClass": "SGNWatchValueNode",
+    "path": "nodes/debug/watch-value",
+    "added": "0.1.0",
+    "purpose": "Displays an evaluated value in the node UI."
+  }
+]

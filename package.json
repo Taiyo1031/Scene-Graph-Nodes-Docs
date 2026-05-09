@@ -1,0 +1,29 @@
+{
+  "name": "scene-graph-nodes-docs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Documentation site for the Scene Graph Nodes Blender add-on.",
+  "type": "module",
+  "scripts": {
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "build:en": "docusaurus build --locale en",
+    "build:ja": "docusaurus build --locale ja",
+    "serve": "docusaurus serve",
+    "clear": "docusaurus clear",
+    "write-translations": "docusaurus write-translations",
+    "version": "docusaurus docs:version",
+    "check-docs": "node scripts/check-docs.mjs"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.8.1",
+    "@docusaurus/preset-classic": "3.8.1",
+    "@docusaurus/theme-mermaid": "3.8.1",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.1.1",
+    "prism-react-renderer": "^2.4.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {}
+}

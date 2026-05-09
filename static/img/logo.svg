@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Scene Graph Nodes">
+  <rect width="128" height="128" rx="24" fill="#12332f"/>
+  <circle cx="34" cy="36" r="14" fill="#53c6b8"/>
+  <circle cx="92" cy="32" r="14" fill="#f0c15a"/>
+  <circle cx="50" cy="92" r="14" fill="#8aa4ff"/>
+  <circle cx="98" cy="88" r="14" fill="#f08a63"/>
+  <path d="M46 39 L78 33 M41 49 L50 78 M64 91 L84 89" stroke="#f6fbfa" stroke-width="8" stroke-linecap="round"/>
+</svg>
