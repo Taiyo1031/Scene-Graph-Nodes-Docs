@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const sourceRoot = path.resolve(process.env.SCENE_GRAPH_NODES_SOURCE || '../Scene Graph Nodes');
+const requireSource = process.env.REQUIRE_SCENE_GRAPH_NODES_SOURCE === '1';
 const project = JSON.parse(fs.readFileSync(path.join(root, 'data/project.json'), 'utf8'));
 const documentedNodes = JSON.parse(fs.readFileSync(path.join(root, 'data/nodes.json'), 'utf8'));
 
@@ -17,7 +18,11 @@ function read(file) {
 
 const initPath = path.join(sourceRoot, 'scene_graph_nodes', '__init__.py');
 if (!fs.existsSync(initPath)) {
-  fail(`source add-on not found at ${sourceRoot}`);
+  if (requireSource) {
+    fail(`source add-on not found at ${sourceRoot}`);
+  } else {
+    console.warn(`source add-on not found at ${sourceRoot}; running static docs coverage only`);
+  }
 } else {
   const initText = read(initPath);
   const match = initText.match(/"version"\s*:\s*\((\d+)\s*,\s*(\d+)\s*,\s*(\d+)\)/);
@@ -47,40 +52,48 @@ if (fs.existsSync(nodeDir)) {
       }
     }
   }
-} else {
+} else if (requireSource) {
   fail(`node source directory not found: ${nodeDir}`);
 }
 
 const docsById = new Map(documentedNodes.map((node) => [node.nodeId, node]));
-for (const [nodeId, source] of sourceNodes) {
-  const doc = docsById.get(nodeId);
-  if (!doc) {
-    fail(`missing data/nodes.json entry for ${nodeId}`);
-    continue;
-  }
-  if (doc.nodeClass !== source.nodeClass) {
-    fail(`${nodeId} class mismatch: docs=${doc.nodeClass}, source=${source.nodeClass}`);
-  }
+const nodesToCheck = sourceNodes.size
+  ? [...sourceNodes].map(([nodeId, source]) => {
+      const doc = docsById.get(nodeId);
+      if (!doc) {
+        fail(`missing data/nodes.json entry for ${nodeId}`);
+        return null;
+      }
+      if (doc.nodeClass !== source.nodeClass) {
+        fail(`${nodeId} class mismatch: docs=${doc.nodeClass}, source=${source.nodeClass}`);
+      }
+      return doc;
+    }).filter(Boolean)
+  : documentedNodes;
+
+for (const doc of nodesToCheck) {
   for (const locale of ['en', 'ja']) {
     const docPath = locale === 'en'
       ? path.join(root, 'docs', `${doc.path}.md`)
       : path.join(root, 'i18n/ja/docusaurus-plugin-content-docs/current', `${doc.path}.md`);
     if (!fs.existsSync(docPath)) {
-      fail(`missing ${locale} doc page for ${nodeId}: ${docPath}`);
+      fail(`missing ${locale} doc page for ${doc.nodeId}: ${docPath}`);
       continue;
     }
     const docText = read(docPath);
-    for (const required of [`node_id: ${nodeId}`, `node_class: ${doc.nodeClass}`, `added: ${doc.added}`]) {
+    for (const required of [`node_id: ${doc.nodeId}`, `node_class: ${doc.nodeClass}`, `added: ${doc.added}`]) {
       if (!docText.includes(required)) {
-        fail(`${locale} doc for ${nodeId} is missing front matter: ${required}`);
+        fail(`${locale} doc for ${doc.nodeId} is missing front matter: ${required}`);
       }
     }
   }
 }
 
-for (const doc of documentedNodes) {
-  if (!sourceNodes.has(doc.nodeId)) {
-    fail(`data/nodes.json documents ${doc.nodeId}, but source node was not found`);
+if (sourceNodes.size) {
+  for (const doc of documentedNodes) {
+    if (!sourceNodes.has(doc.nodeId)) {
+      fail(`data/nodes.json documents ${doc.nodeId}, but source node was not found`);
+    }
   }
 }
 

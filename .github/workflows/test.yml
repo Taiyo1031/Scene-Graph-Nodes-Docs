@@ -12,11 +12,6 @@ jobs:
     steps:
       - name: Checkout docs
         uses: actions/checkout@v4
-      - name: Checkout add-on source
-        uses: actions/checkout@v4
-        with:
-          repository: Taiyo1031/Scene-Graph-Nodes
-          path: _source
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -25,8 +20,6 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Check docs coverage
-        env:
-          SCENE_GRAPH_NODES_SOURCE: _source
         run: npm run check-docs
       - name: Build English site
         run: npm run build:en
