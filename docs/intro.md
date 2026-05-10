@@ -12,12 +12,11 @@ Scene Graph Nodes is a Blender add-on for building scene-level node graphs. It l
   <span className="sgn-badge">Node pages split by category</span>
 </div>
 
-```mermaid
-flowchart LR
-  A[Object Input] --> B[Get Location]
-  B --> C[Vector Math]
-  C --> D[Set Location]
-  E[Vector Value] --> C
+```text
+Object Input -> Get Location -> Vector Math -> Set Location
+                                ^
+                                |
+                           Vector Value
 ```
 
 ## What this documents

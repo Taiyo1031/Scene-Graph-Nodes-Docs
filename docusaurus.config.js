@@ -12,9 +12,6 @@ const config = {
   trailingSlash: false,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  markdown: {
-    mermaid: true,
-  },
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'ja'],
@@ -50,7 +47,6 @@ const config = {
       },
     ],
   ],
-  themes: ['@docusaurus/theme-mermaid'],
   themeConfig: {
     image: 'img/social-card.svg',
     navbar: {
