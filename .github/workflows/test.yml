@@ -21,6 +21,11 @@ jobs:
       - name: Check docs coverage
         run: npm run check-docs
       - name: Build English site
-        run: npm run build:en
+        run: |
+          npm run build:en || {
+            find . -path '*server.bundle.js' -print
+            find . -path '*server.bundle.js' -exec grep -n -o '.\{0,160\}resolveWeak.\{0,220\}' {} \;
+            exit 1
+          }
       - name: Build Japanese site
         run: npm run build:ja
