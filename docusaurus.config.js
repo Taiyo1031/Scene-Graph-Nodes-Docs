@@ -1,4 +1,4 @@
-import {themes as prismThemes} from 'prism-react-renderer';
+const {themes: prismThemes} = require('prism-react-renderer');
 
 const config = {
   title: 'Scene Graph Nodes',
@@ -87,4 +87,4 @@ const config = {
   },
 };
 
-export default config;
+module.exports = config;
