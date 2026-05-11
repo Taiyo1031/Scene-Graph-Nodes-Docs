@@ -3,6 +3,7 @@ title: Get Matrix World
 node_id: SGNGetMatrixWorldNode
 node_class: SGNGetMatrixWorldNode
 category: Transform
+role: READ
 added: 0.1.0
 ---
 
@@ -10,32 +11,53 @@ Reads an object world matrix.
 
 <div className="sgn-badges">
   <span className="sgn-badge">SGNGetMatrixWorldNode</span>
+  <span className="sgn-badge">READ</span>
   <span className="sgn-badge">Added in 0.1.0</span>
   <span className="sgn-badge">Transform</span>
+  <span className="sgn-badge">0.1.0 group-ui-tools</span>
 </div>
+
+## Visual Guide
+
+<figure className="sgn-node-figure">
+  <img src="/Scene-Graph-Nodes-Docs/img/nodes/get-matrix-world.svg" alt="Get Matrix World node diagram" />
+  <figcaption>Diagram showing the inputs, outputs, and evaluation role of Get Matrix World.</figcaption>
+</figure>
+
+## Purpose
+
+Reads an object world matrix.
+
+## Role
+
+`READ` - Reads from Blender data or from a value stored on the node. It should not write back to the scene during evaluation.
 
 ## Inputs
 
-- `Object`
+- Object
 
 ## Outputs
 
-- `Matrix`
+- Matrix
 
 ## Properties
 
 - None
 
-## Evaluation
+## Evaluation Behavior
 
-The evaluator reads linked inputs first, falls back to socket defaults where supported, then stores outputs in the evaluation context. This node does not write Blender data directly.
+It reads `object.matrix_world` and outputs a copy as a Matrix.
 
+## Common Examples
 
-
-## Example
-
-Use this node inside a small graph and connect a **Watch Value** node to inspect the evaluated output before wiring it into a side-effecting node.
+- Copy world transforms.
+- Decompose a world matrix into TRS values.
 
 ## Limitations
 
-Outputs a copy of object.matrix_world.
+- Requires a valid object input.
+
+## Version Metadata
+
+- Version added: `0.1.0`
+- Current build: `0.1.0 group-ui-tools`

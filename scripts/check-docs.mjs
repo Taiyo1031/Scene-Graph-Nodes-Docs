@@ -6,6 +6,7 @@ const sourceRoot = path.resolve(process.env.SCENE_GRAPH_NODES_SOURCE || '../Scen
 const requireSource = process.env.REQUIRE_SCENE_GRAPH_NODES_SOURCE === '1';
 const project = JSON.parse(fs.readFileSync(path.join(root, 'data/project.json'), 'utf8'));
 const documentedNodes = JSON.parse(fs.readFileSync(path.join(root, 'data/nodes.json'), 'utf8'));
+const validRoles = new Set(['READ', 'COMPUTE', 'APPLY', 'ORGANIZATION', 'DEBUG']);
 
 function fail(message) {
   console.error(`docs check failed: ${message}`);
@@ -72,6 +73,17 @@ const nodesToCheck = sourceNodes.size
   : documentedNodes;
 
 for (const doc of nodesToCheck) {
+  if (!validRoles.has(doc.role)) {
+    fail(`${doc.nodeId} has invalid or missing role: ${doc.role}`);
+  }
+  if (!doc.image) {
+    fail(`${doc.nodeId} is missing image metadata`);
+  } else {
+    const imagePath = path.join(root, 'static', doc.image);
+    if (!fs.existsSync(imagePath)) {
+      fail(`${doc.nodeId} image is missing: ${imagePath}`);
+    }
+  }
   for (const locale of ['en', 'ja']) {
     const docPath = locale === 'en'
       ? path.join(root, 'docs', `${doc.path}.md`)
@@ -81,10 +93,13 @@ for (const doc of nodesToCheck) {
       continue;
     }
     const docText = read(docPath);
-    for (const required of [`node_id: ${doc.nodeId}`, `node_class: ${doc.nodeClass}`, `added: ${doc.added}`]) {
+    for (const required of [`node_id: ${doc.nodeId}`, `node_class: ${doc.nodeClass}`, `role: ${doc.role}`, `added: ${doc.added}`]) {
       if (!docText.includes(required)) {
         fail(`${locale} doc for ${doc.nodeId} is missing front matter: ${required}`);
       }
+    }
+    if (doc.image && !docText.includes(doc.image)) {
+      fail(`${locale} doc for ${doc.nodeId} does not reference image ${doc.image}`);
     }
   }
 }

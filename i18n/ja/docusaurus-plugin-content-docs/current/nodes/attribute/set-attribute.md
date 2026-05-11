@@ -3,40 +3,63 @@ title: Set Attribute
 node_id: SGNSetAttributeNode
 node_class: SGNSetAttributeNode
 category: 属性
+role: APPLY
 added: 0.1.0
 ---
 
-限定されたオブジェクト属性またはカスタムプロパティへ値を書き込みます。
+attribute path を指定して、限定された object attribute または custom property へ値を書き込みます。
 
 <div className="sgn-badges">
   <span className="sgn-badge">SGNSetAttributeNode</span>
+  <span className="sgn-badge">APPLY</span>
   <span className="sgn-badge">0.1.0 で追加</span>
   <span className="sgn-badge">属性</span>
+  <span className="sgn-badge">0.1.0 group-ui-tools</span>
 </div>
 
-## Inputs
+## 図解
 
-- `Target`
-- `Value`
+<figure className="sgn-node-figure">
+  <img src="/Scene-Graph-Nodes-Docs/img/nodes/set-attribute.svg" alt="Set Attribute node diagram" />
+  <figcaption>Set Attribute の入力、出力、評価時の役割を示した図です。</figcaption>
+</figure>
 
-## Outputs
+## 目的
+
+attribute path を指定して、限定された object attribute または custom property へ値を書き込みます。
+
+## 役割
+
+`APPLY` - 評価済みの値を Blender データへ書き戻します。グラフ内では副作用を持つ終端として扱います。
+
+## 入力
+
+- Target
+- Value
+
+## 出力
 
 - なし
 
-## Properties
+## プロパティ
 
-- `attribute_path`
+- Attribute Path
 
-## Evaluation
+## 評価の挙動
 
-Evaluator はまずリンクされた input を読み、対応している場合は socket default に fallback し、output を evaluation context に保存します。このノードは評価中に Blender データを書き換えます。
+`hide_viewport`、`hide_render`、または `["my_prop"]` のような custom property path へ Value を書き込みます。
 
+## よく使う例
 
+- viewport visibility を切り替える。
+- simple custom property を書き込む。
 
-## Example
+## 制限
 
-小さなグラフ内でこのノードを使い、副作用ノードへ接続する前に **Watch Value** で評価結果を確認します。
+- `hide_viewport`、`hide_render`、custom property path のみ対応しています。
+- 生成された writable object socket が必要な場合は Set Scene Object を使ってください。
 
-## Limitations
+## バージョン情報
 
-Only hide_viewport, hide_render, and custom property paths are accepted.
+- 追加バージョン: `0.1.0`
+- 現在の build: `0.1.0 group-ui-tools`

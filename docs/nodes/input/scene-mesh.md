@@ -3,40 +3,66 @@ title: Scene Mesh
 node_id: SGNSceneMeshNode
 node_class: SGNSceneMeshNode
 category: Input
+role: READ
 added: 0.1.0
 ---
 
-Exposes mesh data and mesh-level dynamic attributes.
+Exposes mesh data and mesh-level dynamic attributes as output sockets.
 
 <div className="sgn-badges">
   <span className="sgn-badge">SGNSceneMeshNode</span>
+  <span className="sgn-badge">READ</span>
   <span className="sgn-badge">Added in 0.1.0</span>
   <span className="sgn-badge">Input</span>
+  <span className="sgn-badge">0.1.0 group-ui-tools</span>
 </div>
+
+## Visual Guide
+
+<figure className="sgn-node-figure">
+  <img src="/Scene-Graph-Nodes-Docs/img/nodes/scene-mesh.svg" alt="Scene Mesh node diagram" />
+  <figcaption>Diagram showing the inputs, outputs, and evaluation role of Scene Mesh.</figcaption>
+</figure>
+
+## Purpose
+
+Exposes mesh data and mesh-level dynamic attributes as output sockets.
+
+## Role
+
+`READ` - Reads from Blender data or from a value stored on the node. It should not write back to the scene during evaluation.
 
 ## Inputs
 
-- `Mesh`
+- None
 
 ## Outputs
 
-- `Dynamic mesh attributes`
+- Dynamic mesh attribute outputs
+- Geometry, material, custom, and data-block values when available
 
 ## Properties
 
-- `mesh_ref`
-- `attribute visibility toggles`
+- Mesh reference
+- Section toggles
+- Use Selected Mesh
+- Reload action
 
-## Evaluation
+## Evaluation Behavior
 
-The evaluator reads linked inputs first, falls back to socket defaults where supported, then stores outputs in the evaluation context. This node does not write Blender data directly.
+It reads the referenced mesh and publishes discovered mesh values. It does not modify mesh data.
 
+## Common Examples
 
-
-## Example
-
-Use this node inside a small graph and connect a **Watch Value** node to inspect the evaluated output before wiring it into a side-effecting node.
+- Read mesh-level custom properties.
+- Inspect mesh attributes before deciding which writable socket should be driven.
 
 ## Limitations
 
-The Mesh input can override the stored mesh reference when linked.
+- Requires a mesh data-block.
+- Reload after topology or custom property changes that should appear as sockets.
+
+## Version Metadata
+
+- Version added: `0.1.0`
+- Current build: `0.1.0 group-ui-tools`

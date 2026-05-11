@@ -2,43 +2,65 @@
 title: Vector Math
 node_id: SGNVectorMathNode
 node_class: SGNVectorMathNode
-category: 数値計算
+category: Math
+role: COMPUTE
 added: 0.1.0
 ---
 
-ベクトル演算と距離・長さなどのスカラー計測を実行します。
+vector math と scalar vector measurement を実行します。
 
 <div className="sgn-badges">
   <span className="sgn-badge">SGNVectorMathNode</span>
+  <span className="sgn-badge">COMPUTE</span>
   <span className="sgn-badge">0.1.0 で追加</span>
-  <span className="sgn-badge">数値計算</span>
+  <span className="sgn-badge">Math</span>
+  <span className="sgn-badge">0.1.0 group-ui-tools</span>
 </div>
 
-## Inputs
+## 図解
 
-- `A`
-- `B`
-- `Scale`
+<figure className="sgn-node-figure">
+  <img src="/Scene-Graph-Nodes-Docs/img/nodes/vector-math.svg" alt="Vector Math node diagram" />
+  <figcaption>Vector Math の入力、出力、評価時の役割を示した図です。</figcaption>
+</figure>
 
-## Outputs
+## 目的
 
-- `Vector`
-- `Value`
+vector math と scalar vector measurement を実行します。
 
-## Properties
+## 役割
 
-- `operation`
+`COMPUTE` - 入力から派生値を計算し、結果を output socket に出します。
 
-## Evaluation
+## 入力
 
-Evaluator はまずリンクされた input を読み、対応している場合は socket default に fallback し、output を evaluation context に保存します。このノードは Blender データを直接書き換えません。
+- A
+- B
+- Scale
 
-操作: Add、Subtract、Multiply、Scale、Dot Product、Cross Product、Length、Distance、Normalize。
+## 出力
 
-## Example
+- Vector
+- Value
 
-小さなグラフ内でこのノードを使い、副作用ノードへ接続する前に **Watch Value** で評価結果を確認します。
+## プロパティ
 
-## Limitations
+- Operation: Add, Subtract, Multiply, Scale, Dot Product, Cross Product, Length, Distance, Normalize
 
-Some operations output Vector, some output Value; unused output remains its default value.
+## 評価の挙動
+
+vector output と scalar output を計算します。scalar のみを返す operation では Vector は zero のままです。
+
+## よく使う例
+
+- コピーした location に offset を加える。
+- 2 つの vector 間の距離を測る。
+
+## 制限
+
+- どの output が意味を持つかは active operation によって変わります。
+
+## バージョン情報
+
+- 追加バージョン: `0.1.0`
+- 現在の build: `0.1.0 group-ui-tools`

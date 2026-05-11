@@ -2,41 +2,63 @@
 title: Matrix Math
 node_id: SGNMatrixMathNode
 node_class: SGNMatrixMathNode
-category: 行列
+category: Matrix
+role: COMPUTE
 added: 0.1.0
 ---
 
-行列の乗算、逆行列、Identity 出力を実行します。
+matrix multiplication、inversion、identity output を実行します。
 
 <div className="sgn-badges">
   <span className="sgn-badge">SGNMatrixMathNode</span>
+  <span className="sgn-badge">COMPUTE</span>
   <span className="sgn-badge">0.1.0 で追加</span>
-  <span className="sgn-badge">行列</span>
+  <span className="sgn-badge">Matrix</span>
+  <span className="sgn-badge">0.1.0 group-ui-tools</span>
 </div>
 
-## Inputs
+## 図解
 
-- `A`
-- `B`
+<figure className="sgn-node-figure">
+  <img src="/Scene-Graph-Nodes-Docs/img/nodes/matrix-math.svg" alt="Matrix Math node diagram" />
+  <figcaption>Matrix Math の入力、出力、評価時の役割を示した図です。</figcaption>
+</figure>
 
-## Outputs
+## 目的
 
-- `Matrix`
+matrix multiplication、inversion、identity output を実行します。
 
-## Properties
+## 役割
 
-- `operation`
+`COMPUTE` - 入力から派生値を計算し、結果を output socket に出します。
 
-## Evaluation
+## 入力
 
-Evaluator はまずリンクされた input を読み、対応している場合は socket default に fallback し、output を evaluation context に保存します。このノードは Blender データを直接書き換えません。
+- A
+- B
 
-操作: Multiply、Inverse A、Identity。
+## 出力
 
-## Example
+- Matrix
 
-小さなグラフ内でこのノードを使い、副作用ノードへ接続する前に **Watch Value** で評価結果を確認します。
+## プロパティ
 
-## Limitations
+- Operation: Multiply, Inverse A, Identity
 
-Inverse reports an error when the matrix cannot be inverted.
+## 評価の挙動
+
+operation に応じて `A @ B`、`A.inverted()`、または 4x4 identity matrix を返します。
+
+## よく使う例
+
+- 2 つの transform を合成する。
+- 下流へ渡す前に matrix を反転する。
+
+## 制限
+
+- 無効な inverse operation は evaluation error になります。
+
+## バージョン情報
+
+- 追加バージョン: `0.1.0`
+- 現在の build: `0.1.0 group-ui-tools`

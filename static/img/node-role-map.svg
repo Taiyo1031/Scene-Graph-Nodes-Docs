@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="280" viewBox="0 0 920 280" role="img" aria-labelledby="title desc">
+  <title id="title">Scene Graph Nodes role map</title>
+  <desc id="desc">READ, COMPUTE, APPLY, ORGANIZATION, and DEBUG role definitions.</desc>
+  <style>
+    .bg { fill: #f7faf9; }
+    .title { font: 700 26px Inter, system-ui, sans-serif; fill: #17211f; }
+    .roleTitle { font: 700 17px Inter, system-ui, sans-serif; fill: #ffffff; }
+    .roleText { font: 15px Inter, system-ui, sans-serif; fill: #f4fffd; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0d1413; }
+      .title { fill: #edf7f5; }
+    }
+  </style>
+  <rect class="bg" width="920" height="280" rx="18"/>
+  <text x="460" y="42" text-anchor="middle" class="title">Node roles in 0.1.0 group-ui-tools</text>
+  <rect x="38" y="80" width="148" height="150" rx="8" fill="#1976a3"/>
+  <text x="112" y="124" text-anchor="middle" class="roleTitle">READ</text>
+  <text x="112" y="164" text-anchor="middle" class="roleText">Read Blender or</text>
+<text x="112" y="186" text-anchor="middle" class="roleText">stored values</text>
+<rect x="214" y="80" width="148" height="150" rx="8" fill="#7c4d13"/>
+  <text x="288" y="124" text-anchor="middle" class="roleTitle">COMPUTE</text>
+  <text x="288" y="164" text-anchor="middle" class="roleText">Calculate derived</text>
+<text x="288" y="186" text-anchor="middle" class="roleText">values</text>
+<rect x="390" y="80" width="148" height="150" rx="8" fill="#a33b32"/>
+  <text x="464" y="124" text-anchor="middle" class="roleTitle">APPLY</text>
+  <text x="464" y="164" text-anchor="middle" class="roleText">Write back to</text>
+<text x="464" y="186" text-anchor="middle" class="roleText">Blender</text>
+<rect x="566" y="80" width="148" height="150" rx="8" fill="#5d6270"/>
+  <text x="640" y="124" text-anchor="middle" class="roleTitle">ORGANIZATION</text>
+  <text x="640" y="164" text-anchor="middle" class="roleText">Group and route</text>
+<text x="640" y="186" text-anchor="middle" class="roleText">graphs</text>
+<rect x="742" y="80" width="148" height="150" rx="8" fill="#5f3f9e"/>
+  <text x="816" y="124" text-anchor="middle" class="roleTitle">DEBUG</text>
+  <text x="816" y="164" text-anchor="middle" class="roleText">Inspect evaluated</text>
+<text x="816" y="186" text-anchor="middle" class="roleText">values</text>
+</svg>

@@ -3,41 +3,65 @@ title: Scene Object
 node_id: SGNSceneObjectNode
 node_class: SGNSceneObjectNode
 category: Input
+role: READ
 added: 0.1.0
 ---
 
-Exposes a Blender object as dynamic RNA and custom property sockets.
+Exposes a Blender object as dynamic RNA and custom property output sockets.
 
 <div className="sgn-badges">
   <span className="sgn-badge">SGNSceneObjectNode</span>
+  <span className="sgn-badge">READ</span>
   <span className="sgn-badge">Added in 0.1.0</span>
   <span className="sgn-badge">Input</span>
+  <span className="sgn-badge">0.1.0 group-ui-tools</span>
 </div>
+
+## Visual Guide
+
+<figure className="sgn-node-figure">
+  <img src="/Scene-Graph-Nodes-Docs/img/nodes/scene-object.svg" alt="Scene Object node diagram" />
+  <figcaption>Diagram showing the inputs, outputs, and evaluation role of Scene Object.</figcaption>
+</figure>
+
+## Purpose
+
+Exposes a Blender object as dynamic RNA and custom property output sockets.
+
+## Role
+
+`READ` - Reads from Blender data or from a value stored on the node. It should not write back to the scene during evaluation.
 
 ## Inputs
 
-- `Linked writable attribute inputs`
-- `Read-only alignment handles`
+- None
 
 ## Outputs
 
-- `Dynamic object attributes`
+- Dynamic object attribute outputs, grouped by category
+- Object identity and data outputs when discovered
 
 ## Properties
 
-- `object_ref`
-- `attribute visibility toggles`
+- Object reference
+- Section toggles such as Core, Transform, Geometry, Visibility, Render, Data, Custom, and All
+- Reload action
 
-## Evaluation
+## Evaluation Behavior
 
-The evaluator reads linked inputs first, falls back to socket defaults where supported, then stores outputs in the evaluation context. This node writes to Blender data during evaluation.
+During evaluation it reads the selected object and stores discovered attribute values on the matching output sockets.
 
+## Common Examples
 
-
-## Example
-
-Use this node inside a small graph and connect a **Watch Value** node to inspect the evaluated output before wiring it into a side-effecting node.
+- Read an object location-related attribute before feeding a transform chain.
+- Expose custom properties and inspect them with Watch Value.
 
 ## Limitations
 
-Attributes are discovered on reload; newly added custom properties need Reload.
+- Reload after adding new custom properties or changing the object type.
+- Read-only outputs cannot be used to write back to Blender.
+
+## Version Metadata
+
+- Version added: `0.1.0`
+- Current build: `0.1.0 group-ui-tools`

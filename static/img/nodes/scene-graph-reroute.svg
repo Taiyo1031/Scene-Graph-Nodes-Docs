@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img" aria-labelledby="title desc">
+  <title id="title">Scene Graph Reroute node diagram</title>
+  <desc id="desc">Passes values through a typed reroute socket.</desc>
+  <style>
+    :root { color-scheme: light dark; }
+    .bg { fill: #f7faf9; }
+    .panel { fill: #ffffff; stroke: #c9d8d5; stroke-width: 2; }
+    .node { fill: #1f2a44; stroke: #53c6b8; stroke-width: 3; }
+    .role { fill: #16685f; }
+    .role.read { fill: #1976a3; }
+    .role.compute { fill: #7c4d13; }
+    .role.apply { fill: #a33b32; }
+    .role.organization { fill: #5d6270; }
+    .role.debug { fill: #5f3f9e; }
+    .socket { fill: #53c6b8; stroke: #0f4942; stroke-width: 1.5; }
+    .arrow { stroke: #3b5550; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    text { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #17211f; font-size: 18px; }
+    .small { font-size: 14px; }
+    .muted { fill: #60716d; }
+    .nodeText { fill: #ffffff; font-weight: 700; font-size: 24px; }
+    .nodeSmall { fill: #d7fffa; font-size: 14px; }
+    .roleText { fill: #ffffff; font-weight: 700; font-size: 14px; letter-spacing: 0; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0d1413; }
+      .panel { fill: #151f1d; stroke: #314541; }
+      .node { fill: #192235; stroke: #53c6b8; }
+      text { fill: #edf7f5; }
+      .muted { fill: #9bb2ad; }
+      .arrow { stroke: #8cbdb5; }
+    }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#3b5550"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="920" height="360" rx="18"/>
+  <rect class="panel" x="38" y="44" width="240" height="240" rx="8"/>
+  <rect class="panel" x="642" y="44" width="240" height="240" rx="8"/>
+  <text x="158" y="82" text-anchor="middle" font-weight="700">Inputs</text>
+  <text x="762" y="82" text-anchor="middle" font-weight="700">Outputs</text>
+  <circle cx="226" cy="121" r="5" class="socket"/><text x="214" y="126" text-anchor="end">Any typed value</text>
+  <circle cx="674" cy="121" r="5" class="socket"/><text x="686" y="126" text-anchor="start">Same value</text>
+  <path class="arrow" d="M286 164 C330 164 330 164 374 164"/>
+  <path class="arrow" d="M546 164 C590 164 590 164 634 164"/>
+  <rect class="node" x="374" y="84" width="172" height="160" rx="10"/>
+  <rect class="role organization" x="394" y="104" width="132" height="28" rx="6"/>
+  <text class="roleText" x="460" y="124" text-anchor="middle">ORGANIZATION</text>
+  <text class="nodeText" x="460" y="168" text-anchor="middle">Scene Graph Reroute</text>
+  <text class="nodeSmall" x="460" y="224" text-anchor="middle">SGNRerouteNode</text>
+  <text x="460" y="286" text-anchor="middle" font-weight="700">Pass through</text>
+  <text class="small muted" x="460" y="315" text-anchor="middle">Passes values through a typed reroute socket.</text>
+</svg>

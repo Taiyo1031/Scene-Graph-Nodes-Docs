@@ -2,40 +2,62 @@
 title: Get Location
 node_id: SGNGetLocationNode
 node_class: SGNGetLocationNode
-category: トランスフォーム
+category: Transform
+role: READ
 added: 0.1.0
 ---
 
-オブジェクトの location を読み取ります。
+object の location を読みます。
 
 <div className="sgn-badges">
   <span className="sgn-badge">SGNGetLocationNode</span>
+  <span className="sgn-badge">READ</span>
   <span className="sgn-badge">0.1.0 で追加</span>
-  <span className="sgn-badge">トランスフォーム</span>
+  <span className="sgn-badge">Transform</span>
+  <span className="sgn-badge">0.1.0 group-ui-tools</span>
 </div>
 
-## Inputs
+## 図解
 
-- `Object`
+<figure className="sgn-node-figure">
+  <img src="/Scene-Graph-Nodes-Docs/img/nodes/get-location.svg" alt="Get Location node diagram" />
+  <figcaption>Get Location の入力、出力、評価時の役割を示した図です。</figcaption>
+</figure>
 
-## Outputs
+## 目的
 
-- `Location`
+object の location を読みます。
 
-## Properties
+## 役割
+
+`READ` - Blender データ、またはノード上に保存された値を読みます。評価中にシーンへ書き戻すことはありません。
+
+## 入力
+
+- Object
+
+## 出力
+
+- Location
+
+## プロパティ
 
 - なし
 
-## Evaluation
+## 評価の挙動
 
-Evaluator はまずリンクされた input を読み、対応している場合は socket default に fallback し、output を evaluation context に保存します。このノードは Blender データを直接書き換えません。
+`object.location` を読み、copy を Vector として出力します。
 
+## よく使う例
 
+- source object の location を Vector Math へ渡す。
+- object location を Watch Value で確認する。
 
-## Example
+## 制限
 
-小さなグラフ内でこのノードを使い、副作用ノードへ接続する前に **Watch Value** で評価結果を確認します。
+- 有効な object input が必要です。
 
-## Limitations
+## バージョン情報
 
-Requires a valid Blender object.
+- 追加バージョン: `0.1.0`
+- 現在の build: `0.1.0 group-ui-tools`

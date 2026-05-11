@@ -43,3 +43,21 @@
   display: table;
   width: 100%;
 }
+
+.sgn-node-figure {
+  margin: 1.25rem 0;
+}
+
+.sgn-node-figure img {
+  width: 100%;
+  max-width: 920px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+
+.sgn-node-figure figcaption {
+  margin-top: 0.45rem;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+}

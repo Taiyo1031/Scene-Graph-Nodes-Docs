@@ -2,41 +2,64 @@
 title: Set Location
 node_id: SGNSetLocationNode
 node_class: SGNSetLocationNode
-category: トランスフォーム
+category: Transform
+role: APPLY
 added: 0.1.0
 ---
 
-ベクトルをオブジェクトの location に書き込みます。
+Vector を object location へ書き込みます。
 
 <div className="sgn-badges">
   <span className="sgn-badge">SGNSetLocationNode</span>
+  <span className="sgn-badge">APPLY</span>
   <span className="sgn-badge">0.1.0 で追加</span>
-  <span className="sgn-badge">トランスフォーム</span>
+  <span className="sgn-badge">Transform</span>
+  <span className="sgn-badge">0.1.0 group-ui-tools</span>
 </div>
 
-## Inputs
+## 図解
 
-- `Object`
-- `Location`
+<figure className="sgn-node-figure">
+  <img src="/Scene-Graph-Nodes-Docs/img/nodes/set-location.svg" alt="Set Location node diagram" />
+  <figcaption>Set Location の入力、出力、評価時の役割を示した図です。</figcaption>
+</figure>
 
-## Outputs
+## 目的
+
+Vector を object location へ書き込みます。
+
+## 役割
+
+`APPLY` - 評価済みの値を Blender データへ書き戻します。グラフ内では副作用を持つ終端として扱います。
+
+## 入力
+
+- Object
+- Location
+
+## 出力
 
 - なし
 
-## Properties
+## プロパティ
 
 - なし
 
-## Evaluation
+## 評価の挙動
 
-Evaluator はまずリンクされた input を読み、対応している場合は socket default に fallback し、output を evaluation context に保存します。このノードは評価中に Blender データを書き換えます。
+object と vector input を解決し、`object.location` へ代入します。
 
+## よく使う例
 
+- Copy Location chain の終端に置く。
+- Vector Math の offset 結果を target object に適用する。
 
-## Example
+## 制限
 
-小さなグラフ内でこのノードを使い、副作用ノードへ接続する前に **Watch Value** で評価結果を確認します。
+- 評価中に scene を直接変更します。
+- Object と Location の両 input が必要です。
 
-## Limitations
+## バージョン情報
 
-This is side-effecting and writes to the Blender object.
+- 追加バージョン: `0.1.0`
+- 現在の build: `0.1.0 group-ui-tools`

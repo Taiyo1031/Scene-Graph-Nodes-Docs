@@ -2,41 +2,64 @@
 title: Math
 node_id: SGNMathNode
 node_class: SGNMathNode
-category: 数値計算
+category: Math
+role: COMPUTE
 added: 0.1.0
 ---
 
-float の数値演算を実行します。
+float の math operation を実行します。
 
 <div className="sgn-badges">
   <span className="sgn-badge">SGNMathNode</span>
+  <span className="sgn-badge">COMPUTE</span>
   <span className="sgn-badge">0.1.0 で追加</span>
-  <span className="sgn-badge">数値計算</span>
+  <span className="sgn-badge">Math</span>
+  <span className="sgn-badge">0.1.0 group-ui-tools</span>
 </div>
 
-## Inputs
+## 図解
 
-- `A`
-- `B`
+<figure className="sgn-node-figure">
+  <img src="/Scene-Graph-Nodes-Docs/img/nodes/math.svg" alt="Math node diagram" />
+  <figcaption>Math の入力、出力、評価時の役割を示した図です。</figcaption>
+</figure>
 
-## Outputs
+## 目的
 
-- `Result`
+float の math operation を実行します。
 
-## Properties
+## 役割
 
-- `operation`
+`COMPUTE` - 入力から派生値を計算し、結果を output socket に出します。
 
-## Evaluation
+## 入力
 
-Evaluator はまずリンクされた input を読み、対応している場合は socket default に fallback し、output を evaluation context に保存します。このノードは Blender データを直接書き換えません。
+- A
+- B
 
-操作: Add、Subtract、Multiply、Divide、Sine、Cosine、Minimum、Maximum、Absolute。
+## 出力
 
-## Example
+- Result
 
-小さなグラフ内でこのノードを使い、副作用ノードへ接続する前に **Watch Value** で評価結果を確認します。
+## プロパティ
 
-## Limitations
+- Operation: Add, Subtract, Multiply, Divide, Sine, Cosine, Minimum, Maximum, Absolute
 
-Division by zero reports an evaluation error.
+## 評価の挙動
+
+選択された operation を評価し、float result を出力します。
+
+## よく使う例
+
+- 数値 driver value を scale する。
+- Minimum / Maximum で値を比較または制限する。
+
+## 制限
+
+- 0 除算は evaluation error になります。
+- 単項 operation でも B socket は表示されたままです。
+
+## バージョン情報
+
+- 追加バージョン: `0.1.0`
+- 現在の build: `0.1.0 group-ui-tools`

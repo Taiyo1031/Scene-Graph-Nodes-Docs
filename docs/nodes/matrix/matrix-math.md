@@ -3,6 +3,7 @@ title: Matrix Math
 node_id: SGNMatrixMathNode
 node_class: SGNMatrixMathNode
 category: Matrix
+role: COMPUTE
 added: 0.1.0
 ---
 
@@ -10,33 +11,54 @@ Runs matrix multiplication, inversion, or identity output.
 
 <div className="sgn-badges">
   <span className="sgn-badge">SGNMatrixMathNode</span>
+  <span className="sgn-badge">COMPUTE</span>
   <span className="sgn-badge">Added in 0.1.0</span>
   <span className="sgn-badge">Matrix</span>
+  <span className="sgn-badge">0.1.0 group-ui-tools</span>
 </div>
+
+## Visual Guide
+
+<figure className="sgn-node-figure">
+  <img src="/Scene-Graph-Nodes-Docs/img/nodes/matrix-math.svg" alt="Matrix Math node diagram" />
+  <figcaption>Diagram showing the inputs, outputs, and evaluation role of Matrix Math.</figcaption>
+</figure>
+
+## Purpose
+
+Runs matrix multiplication, inversion, or identity output.
+
+## Role
+
+`COMPUTE` - Computes a derived value from inputs and publishes the result to output sockets.
 
 ## Inputs
 
-- `A`
-- `B`
+- A
+- B
 
 ## Outputs
 
-- `Matrix`
+- Matrix
 
 ## Properties
 
-- `operation`
+- Operation: Multiply, Inverse A, Identity
 
-## Evaluation
+## Evaluation Behavior
 
-The evaluator reads linked inputs first, falls back to socket defaults where supported, then stores outputs in the evaluation context. This node does not write Blender data directly.
+It returns `A @ B`, `A.inverted()`, or a 4x4 identity matrix depending on the operation.
 
-Operations: Multiply, Inverse A, Identity.
+## Common Examples
 
-## Example
-
-Use this node inside a small graph and connect a **Watch Value** node to inspect the evaluated output before wiring it into a side-effecting node.
+- Combine two transforms.
+- Invert a matrix before applying it downstream.
 
 ## Limitations
 
-Inverse reports an error when the matrix cannot be inverted.
+- Invalid inverse operations raise an evaluation error.
+
+## Version Metadata
+
+- Version added: `0.1.0`
+- Current build: `0.1.0 group-ui-tools`

@@ -2,41 +2,64 @@
 title: Set Matrix World
 node_id: SGNSetMatrixWorldNode
 node_class: SGNSetMatrixWorldNode
-category: トランスフォーム
+category: Transform
+role: APPLY
 added: 0.1.0
 ---
 
-行列をオブジェクトの world transform に書き込みます。
+Matrix を object の world transform へ書き込みます。
 
 <div className="sgn-badges">
   <span className="sgn-badge">SGNSetMatrixWorldNode</span>
+  <span className="sgn-badge">APPLY</span>
   <span className="sgn-badge">0.1.0 で追加</span>
-  <span className="sgn-badge">トランスフォーム</span>
+  <span className="sgn-badge">Transform</span>
+  <span className="sgn-badge">0.1.0 group-ui-tools</span>
 </div>
 
-## Inputs
+## 図解
 
-- `Object`
-- `Matrix`
+<figure className="sgn-node-figure">
+  <img src="/Scene-Graph-Nodes-Docs/img/nodes/set-matrix-world.svg" alt="Set Matrix World node diagram" />
+  <figcaption>Set Matrix World の入力、出力、評価時の役割を示した図です。</figcaption>
+</figure>
 
-## Outputs
+## 目的
+
+Matrix を object の world transform へ書き込みます。
+
+## 役割
+
+`APPLY` - 評価済みの値を Blender データへ書き戻します。グラフ内では副作用を持つ終端として扱います。
+
+## 入力
+
+- Object
+- Matrix
+
+## 出力
 
 - なし
 
-## Properties
+## プロパティ
 
 - なし
 
-## Evaluation
+## 評価の挙動
 
-Evaluator はまずリンクされた input を読み、対応している場合は socket default に fallback し、output を evaluation context に保存します。このノードは評価中に Blender データを書き換えます。
+object と matrix input を解決し、`object.matrix_world` へ代入します。
 
+## よく使う例
 
+- Copy Matrix World chain の終端に置く。
+- location / rotation / scale から組み立てた matrix を適用する。
 
-## Example
+## 制限
 
-小さなグラフ内でこのノードを使い、副作用ノードへ接続する前に **Watch Value** で評価結果を確認します。
+- 評価中に scene を直接変更します。
+- 無効な matrix 値は予期しない transform を作ることがあります。
 
-## Limitations
+## バージョン情報
 
-This is side-effecting and writes object.matrix_world.
+- 追加バージョン: `0.1.0`
+- 現在の build: `0.1.0 group-ui-tools`

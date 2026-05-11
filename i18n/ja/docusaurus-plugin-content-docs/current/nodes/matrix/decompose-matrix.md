@@ -2,42 +2,64 @@
 title: Decompose Matrix
 node_id: SGNDecomposeMatrixNode
 node_class: SGNDecomposeMatrixNode
-category: 行列
+category: Matrix
+role: COMPUTE
 added: 0.1.0
 ---
 
-行列を Location、Euler Rotation、Scale に分解します。
+matrix を location、Euler rotation、scale に分解します。
 
 <div className="sgn-badges">
   <span className="sgn-badge">SGNDecomposeMatrixNode</span>
+  <span className="sgn-badge">COMPUTE</span>
   <span className="sgn-badge">0.1.0 で追加</span>
-  <span className="sgn-badge">行列</span>
+  <span className="sgn-badge">Matrix</span>
+  <span className="sgn-badge">0.1.0 group-ui-tools</span>
 </div>
 
-## Inputs
+## 図解
 
-- `Matrix`
+<figure className="sgn-node-figure">
+  <img src="/Scene-Graph-Nodes-Docs/img/nodes/decompose-matrix.svg" alt="Decompose Matrix node diagram" />
+  <figcaption>Decompose Matrix の入力、出力、評価時の役割を示した図です。</figcaption>
+</figure>
 
-## Outputs
+## 目的
 
-- `Location`
-- `Rotation`
-- `Scale`
+matrix を location、Euler rotation、scale に分解します。
 
-## Properties
+## 役割
+
+`COMPUTE` - 入力から派生値を計算し、結果を output socket に出します。
+
+## 入力
+
+- Matrix
+
+## 出力
+
+- Location
+- Rotation
+- Scale
+
+## プロパティ
 
 - なし
 
-## Evaluation
+## 評価の挙動
 
-Evaluator はまずリンクされた input を読み、対応している場合は socket default に fallback し、output を evaluation context に保存します。このノードは Blender データを直接書き換えません。
+matrix を分解し、rotation を Euler に変換して TRS output を出力します。
 
+## よく使う例
 
+- world matrix を読みやすい TRS 値として確認する。
+- transform の scale 部分だけを再利用する。
 
-## Example
+## 制限
 
-小さなグラフ内でこのノードを使い、副作用ノードへ接続する前に **Watch Value** で評価結果を確認します。
+- matrix decomposition は Blender mathutils の挙動に従います。
 
-## Limitations
+## バージョン情報
 
-Rotation is converted to Euler.
+- 追加バージョン: `0.1.0`
+- 現在の build: `0.1.0 group-ui-tools`

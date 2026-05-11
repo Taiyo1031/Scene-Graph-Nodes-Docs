@@ -1,6 +1,7 @@
 {
   "addonName": "Scene Graph Nodes",
   "addonVersion": "0.1.0",
+  "buildLabel": "0.1.0 group-ui-tools",
   "docsVersion": "0.1.0",
   "sourceRepository": "Taiyo1031/Scene-Graph-Nodes",
   "docsRepository": "Taiyo1031/Scene-Graph-Nodes-Docs",

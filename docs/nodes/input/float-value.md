@@ -3,6 +3,7 @@ title: Float Value
 node_id: SGNFloatValueNode
 node_class: SGNFloatValueNode
 category: Input
+role: READ
 added: 0.1.0
 ---
 
@@ -10,9 +11,26 @@ Outputs a constant floating point value.
 
 <div className="sgn-badges">
   <span className="sgn-badge">SGNFloatValueNode</span>
+  <span className="sgn-badge">READ</span>
   <span className="sgn-badge">Added in 0.1.0</span>
   <span className="sgn-badge">Input</span>
+  <span className="sgn-badge">0.1.0 group-ui-tools</span>
 </div>
+
+## Visual Guide
+
+<figure className="sgn-node-figure">
+  <img src="/Scene-Graph-Nodes-Docs/img/nodes/float-value.svg" alt="Float Value node diagram" />
+  <figcaption>Diagram showing the inputs, outputs, and evaluation role of Float Value.</figcaption>
+</figure>
+
+## Purpose
+
+Outputs a constant floating point value.
+
+## Role
+
+`READ` - Reads from Blender data or from a value stored on the node. It should not write back to the scene during evaluation.
 
 ## Inputs
 
@@ -20,22 +38,26 @@ Outputs a constant floating point value.
 
 ## Outputs
 
-- `Value`
+- Value
 
 ## Properties
 
-- `value`
+- Value
 
-## Evaluation
+## Evaluation Behavior
 
-The evaluator reads linked inputs first, falls back to socket defaults where supported, then stores outputs in the evaluation context. This node does not write Blender data directly.
+It converts the stored value to a float and publishes it.
 
+## Common Examples
 
-
-## Example
-
-Use this node inside a small graph and connect a **Watch Value** node to inspect the evaluated output before wiring it into a side-effecting node.
+- Drive Math inputs.
+- Use as a scale factor for Vector Math.
 
 ## Limitations
 
-Outputs a Python float.
+- Stores one scalar value only.
+
+## Version Metadata
+
+- Version added: `0.1.0`
+- Current build: `0.1.0 group-ui-tools`

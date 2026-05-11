@@ -12,6 +12,7 @@
     "clear": "docusaurus clear",
     "write-translations": "docusaurus write-translations",
     "version": "docusaurus docs:version",
+    "generate-node-docs": "node scripts/generate-node-docs.mjs",
     "check-docs": "node scripts/check-docs.mjs"
   },
   "dependencies": {

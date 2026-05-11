@@ -2,40 +2,65 @@
 title: Scene Graph Group
 node_id: SGNGroupNode
 node_class: SGNGroupNode
-category: レイアウト
+category: Layout
+role: ORGANIZATION
 added: 0.1.0
 ---
 
-別の Scene Graph node tree を現在のグラフ内で再利用・評価します。
+別の graph 内で再利用可能な Scene Graph node tree を評価します。
 
 <div className="sgn-badges">
   <span className="sgn-badge">SGNGroupNode</span>
+  <span className="sgn-badge">ORGANIZATION</span>
   <span className="sgn-badge">0.1.0 で追加</span>
-  <span className="sgn-badge">レイアウト</span>
+  <span className="sgn-badge">Layout</span>
+  <span className="sgn-badge">0.1.0 group-ui-tools</span>
 </div>
 
-## Inputs
+## 図解
 
-- `Generated from group interface`
+<figure className="sgn-node-figure">
+  <img src="/Scene-Graph-Nodes-Docs/img/nodes/scene-graph-group.svg" alt="Scene Graph Group node diagram" />
+  <figcaption>Scene Graph Group の入力、出力、評価時の役割を示した図です。</figcaption>
+</figure>
 
-## Outputs
+## 目的
 
-- `Generated from group interface`
+別の graph 内で再利用可能な Scene Graph node tree を評価します。
 
-## Properties
+## 役割
 
-- `group_tree`
+`ORGANIZATION` - グループ化や型付きの通過配線で、グラフを整理するためのノードです。
 
-## Evaluation
+## 入力
 
-Evaluator はまずリンクされた input を読み、対応している場合は socket default に fallback し、output を evaluation context に保存します。このノードは Blender データを直接書き換えません。
+- group tree interface から生成
 
+## 出力
 
+- group tree interface から生成
 
-## Example
+## プロパティ
 
-小さなグラフ内でこのノードを使い、副作用ノードへ接続する前に **Watch Value** で評価結果を確認します。
+- Group tree
+- Edit action
+- Ungroup action
 
-## Limitations
+## 評価の挙動
 
-Recursive group references are blocked.
+input socket value を nested Scene Graph tree に渡し、group output value を parent graph へ戻します。
+
+## よく使う例
+
+- 繰り返し使う transform chain をまとめる。
+- selected nodes から再利用可能な graph tool を作る。
+
+## 制限
+
+- 有効な Scene Graph node tree が必要です。
+- interface は nested group の input/output に従います。
+
+## バージョン情報
+
+- 追加バージョン: `0.1.0`
+- 現在の build: `0.1.0 group-ui-tools`

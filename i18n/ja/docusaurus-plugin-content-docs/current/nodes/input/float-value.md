@@ -3,6 +3,7 @@ title: Float Value
 node_id: SGNFloatValueNode
 node_class: SGNFloatValueNode
 category: 入力
+role: READ
 added: 0.1.0
 ---
 
@@ -10,32 +11,53 @@ added: 0.1.0
 
 <div className="sgn-badges">
   <span className="sgn-badge">SGNFloatValueNode</span>
+  <span className="sgn-badge">READ</span>
   <span className="sgn-badge">0.1.0 で追加</span>
   <span className="sgn-badge">入力</span>
+  <span className="sgn-badge">0.1.0 group-ui-tools</span>
 </div>
 
-## Inputs
+## 図解
+
+<figure className="sgn-node-figure">
+  <img src="/Scene-Graph-Nodes-Docs/img/nodes/float-value.svg" alt="Float Value node diagram" />
+  <figcaption>Float Value の入力、出力、評価時の役割を示した図です。</figcaption>
+</figure>
+
+## 目的
+
+固定の float 値を出力します。
+
+## 役割
+
+`READ` - Blender データ、またはノード上に保存された値を読みます。評価中にシーンへ書き戻すことはありません。
+
+## 入力
 
 - なし
 
-## Outputs
+## 出力
 
-- `Value`
+- Value
 
-## Properties
+## プロパティ
 
-- `value`
+- Value
 
-## Evaluation
+## 評価の挙動
 
-Evaluator はまずリンクされた input を読み、対応している場合は socket default に fallback し、output を evaluation context に保存します。このノードは Blender データを直接書き換えません。
+保存された値を float に変換して出力します。
 
+## よく使う例
 
+- Math input を駆動する。
+- Vector Math の scale factor として使う。
 
-## Example
+## 制限
 
-小さなグラフ内でこのノードを使い、副作用ノードへ接続する前に **Watch Value** で評価結果を確認します。
+- 保持できる scalar 値は 1 つだけです。
 
-## Limitations
+## バージョン情報
 
-Outputs a Python float.
+- 追加バージョン: `0.1.0`
+- 現在の build: `0.1.0 group-ui-tools`

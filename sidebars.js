@@ -23,7 +23,7 @@ const sidebars = {
         {
           type: 'category',
           label: 'Input',
-          items: ['nodes/input/object-input', 'nodes/input/scene-object', 'nodes/input/scene-mesh', 'nodes/input/float-value', 'nodes/input/vector-value'],
+          items: ['nodes/input/scene-object', 'nodes/input/scene-mesh', 'nodes/input/object-input', 'nodes/input/float-value', 'nodes/input/vector-value'],
         },
         {
           type: 'category',
@@ -43,7 +43,7 @@ const sidebars = {
         {
           type: 'category',
           label: 'Attribute',
-          items: ['nodes/attribute/set-attribute'],
+          items: ['nodes/attribute/set-scene-object', 'nodes/attribute/set-scene-mesh', 'nodes/attribute/set-attribute'],
         },
         {
           type: 'category',

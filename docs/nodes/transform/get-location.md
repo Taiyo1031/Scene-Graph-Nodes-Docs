@@ -3,6 +3,7 @@ title: Get Location
 node_id: SGNGetLocationNode
 node_class: SGNGetLocationNode
 category: Transform
+role: READ
 added: 0.1.0
 ---
 
@@ -10,32 +11,53 @@ Reads an object location.
 
 <div className="sgn-badges">
   <span className="sgn-badge">SGNGetLocationNode</span>
+  <span className="sgn-badge">READ</span>
   <span className="sgn-badge">Added in 0.1.0</span>
   <span className="sgn-badge">Transform</span>
+  <span className="sgn-badge">0.1.0 group-ui-tools</span>
 </div>
+
+## Visual Guide
+
+<figure className="sgn-node-figure">
+  <img src="/Scene-Graph-Nodes-Docs/img/nodes/get-location.svg" alt="Get Location node diagram" />
+  <figcaption>Diagram showing the inputs, outputs, and evaluation role of Get Location.</figcaption>
+</figure>
+
+## Purpose
+
+Reads an object location.
+
+## Role
+
+`READ` - Reads from Blender data or from a value stored on the node. It should not write back to the scene during evaluation.
 
 ## Inputs
 
-- `Object`
+- Object
 
 ## Outputs
 
-- `Location`
+- Location
 
 ## Properties
 
 - None
 
-## Evaluation
+## Evaluation Behavior
 
-The evaluator reads linked inputs first, falls back to socket defaults where supported, then stores outputs in the evaluation context. This node does not write Blender data directly.
+It reads `object.location` and outputs a copy as a Vector.
 
+## Common Examples
 
-
-## Example
-
-Use this node inside a small graph and connect a **Watch Value** node to inspect the evaluated output before wiring it into a side-effecting node.
+- Copy a source object location into Vector Math.
+- Inspect an object location with Watch Value.
 
 ## Limitations
 
-Requires a valid Blender object.
+- Requires a valid object input.
+
+## Version Metadata
+
+- Version added: `0.1.0`
+- Current build: `0.1.0 group-ui-tools`
